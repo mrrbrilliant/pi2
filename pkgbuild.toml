@@ -1,0 +1,33 @@
+pkgname = ""
+version = ""
+release = 0
+description = ""
+architectures = [""]
+licenses = [""]
+project_url = [""]
+sources = [""]
+provides = [""]
+conflict = [""]
+replace = [""]
+dependencies = [""]
+build_dependencies = [""]
+optional_dependencies = [""]
+deploy = ""
+env_vars = [""]
+builder = """
+#!/bin/bash
+
+echo $XDG_SESSION_TYPE
+echo "$XDG_SESSION_TYPE"
+mkdir -p test/{test1,test2}/a-{1,2}
+
+test_fn() {
+    tester="happy"
+    echo brilliant | tee test/test1/a-1/text.txt
+    sed -i "s/brilliant/BRILLIANT/g" test/test1/a-1/text.txt
+    sed -i "s/BRILLIANT/${tester}/g" test/test1/a-1/text.txt
+}
+
+test_fn
+"""
+
